@@ -1,5 +1,4 @@
 import discord
-import config
 import random
 from discord.ext import commands
 from discord import app_commands
@@ -7,6 +6,7 @@ from discord.utils import get
 from io import StringIO
 from keep_alive import keep_alive
 from datetime import datetime, timedelta
+import os
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -26,6 +26,6 @@ async def roll_dice(interaction: discord.Interaction, sides: int = 6):
         return
     result = random.randint(1, sides)
     await interaction.response.send_message(f'サイコロを振った結果: {result}')
-
+TOKEN = os.getenv("DISCORD_TOKEN")
 keep_alive()
-client.run(config.DISCORD_TOKEN)
+client.run(TOKEN)
