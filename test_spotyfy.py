@@ -1,12 +1,13 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
-client_id = os.getenv("client_id")
-client_secret = os.getenv("client_secret")
-
+from dotenv import load_dotenv
+load_dotenv()
+client_id = os.getenv('client_id')
+client_secret =os.getenv('client_secret')
 ccm = SpotifyClientCredentials(client_id = client_id, client_secret = client_secret)
 spotify = spotipy.Spotify(client_credentials_manager = ccm)
-
+print(client_id, client_secret)
 def search_sound(song_name, artist_name):
     if not song_name and not artist_name:
         print("曲名またはアーティスト名を指定してください。")
@@ -35,5 +36,6 @@ def search_sound(song_name, artist_name):
         song_list.append((song_name, artist_name, preview_url, album_image))
     return song_list
 
+search_sound("ハッピーエンド", "back number")
 
 
