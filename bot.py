@@ -30,7 +30,7 @@ async def roll_dice(interaction: discord.Interaction, sides: int = 6):
 
 @tree.command(name='song', description='search song')
 async def search_song(interaction: discord.Interaction, sides: str = "", artist_name: str = ""):
-    if not sides or not artist_name:
+    if not sides and not artist_name:
         await interaction.response.send_message("曲名とアーティスト名を入力してください")
         return
     
